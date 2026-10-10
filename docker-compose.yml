@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: billing-postgres
+    environment:
+      POSTGRES_DB: clients_billing
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123098
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  oracle:
+    image: gvenzl/oracle-xe:21-slim-faststart
+    container_name: billing-oracle
+    environment:
+      ORACLE_PASSWORD: 123098      
+      APP_USER: billing           
+      APP_USER_PASSWORD: 123098
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+
+volumes:
+  postgres_data:
+  oracle_data:
